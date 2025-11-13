@@ -265,33 +265,56 @@ frc [OPTIONS] <COMMAND> [ARGS]...
 
 ## FAQ
 
-**Q: Will environment variables pollute the system?**
-A: No. Environment variables only affect child processes launched by frc, not the system environment or other processes.
+<details>
+<summary><strong>Q: Will environment variables pollute the system?</strong></summary>
 
-**Q: Will long-running processes (like dev server) lose effectiveness?**
-A: No. Child processes run independently after inheriting environment variables, unaffected by frc exit.
+No. Environment variables only affect child processes launched by frc, not the system environment or other processes.
+</details>
+
+<details>
+<summary><strong>Q: Will long-running processes (like dev server) lose effectiveness?</strong></summary>
+
+No. Child processes run independently after inheriting environment variables, unaffected by frc exit.
 ```bash
 # dev server continues running, unaffected by frc exit
 frc -m 4096 npm run dev
 ```
+</details>
 
-**Q: Can multiple projects run simultaneously?**
-A: Yes. Each frc process is completely independent, multiple projects can run in different terminals without interfering with each other.
+<details>
+<summary><strong>Q: Can multiple projects run simultaneously?</strong></summary>
 
-**Q: Why doesn't Bun support memory configuration?**
-A: Bun uses the JavaScriptCore engine, which doesn't provide manual memory configuration options and manages memory automatically.
+Yes. Each frc process is completely independent, multiple projects can run in different terminals without interfering with each other.
+</details>
 
-**Q: Where is the configuration file saved?**
-A: `~/.config/frc/config.json`
+<details>
+<summary><strong>Q: Why doesn't Bun support memory configuration?</strong></summary>
 
-**Q: How do I determine how much memory to set?**
-A: Run `frc info node` to see recommended configuration values based on system memory.
+Bun uses the JavaScriptCore engine, which doesn't provide manual memory configuration options and manages memory automatically.
+</details>
 
-**Q: Will it affect program performance?**
-A: No. FRC only sets environment variables at startup, with no runtime overhead.
+<details>
+<summary><strong>Q: Where is the configuration file saved?</strong></summary>
 
-**Q: Can it be used in CI/CD?**
-A: Yes. Examples:
+`~/.config/frc/config.json`
+</details>
+
+<details>
+<summary><strong>Q: How do I determine how much memory to set?</strong></summary>
+
+Run `frc info node` to see recommended configuration values based on system memory.
+</details>
+
+<details>
+<summary><strong>Q: Will it affect program performance?</strong></summary>
+
+No. FRC only sets environment variables at startup, with no runtime overhead.
+</details>
+
+<details>
+<summary><strong>Q: Can it be used in CI/CD?</strong></summary>
+
+Yes. Examples:
 
 ```yaml
 # GitHub Actions
@@ -303,6 +326,7 @@ build:
   script:
     - frc -m 8192 npm run build
 ```
+</details>
 
 ## Development
 

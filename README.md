@@ -265,33 +265,56 @@ frc [OPTIONS] <COMMAND> [ARGS]...
 
 ## FAQ
 
-**Q: 环境变量会污染系统环境吗？**
-A: 不会。环境变量只对 frc 启动的子进程有效，不会影响系统环境或其他进程。
+<details>
+<summary><strong>Q: 环境变量会污染系统环境吗？</strong></summary>
 
-**Q: 长时间运行的进程（如 dev server）会失效吗？**
-A: 不会。子进程继承环境变量后独立运行，即使 frc 退出也不影响。
+不会。环境变量只对 frc 启动的子进程有效，不会影响系统环境或其他进程。
+</details>
+
+<details>
+<summary><strong>Q: 长时间运行的进程（如 dev server）会失效吗？</strong></summary>
+
+不会。子进程继承环境变量后独立运行，即使 frc 退出也不影响。
 ```bash
 # dev server 持续运行，不受 frc 退出影响
 frc -m 4096 npm run dev
 ```
+</details>
 
-**Q: 可以同时运行多个项目吗？**
-A: 可以。每个 frc 进程完全独立，可以在不同终端同时运行多个项目，互不干扰。
+<details>
+<summary><strong>Q: 可以同时运行多个项目吗？</strong></summary>
 
-**Q: 为什么 Bun 不支持内存配置？**
-A: Bun 使用 JavaScriptCore 引擎，该引擎不提供手动内存配置选项，而是自动管理内存。
+可以。每个 frc 进程完全独立，可以在不同终端同时运行多个项目，互不干扰。
+</details>
 
-**Q: 配置文件保存在哪里？**
-A: `~/.config/frc/config.json`
+<details>
+<summary><strong>Q: 为什么 Bun 不支持内存配置？</strong></summary>
 
-**Q: 如何确定应该设置多少内存？**
-A: 运行 `frc info node` 查看根据系统内存推荐的配置值。
+Bun 使用 JavaScriptCore 引擎，该引擎不提供手动内存配置选项，而是自动管理内存。
+</details>
 
-**Q: 会影响程序性能吗？**
-A: 不会。FRC 仅在启动时设置环境变量，没有运行时开销。
+<details>
+<summary><strong>Q: 配置文件保存在哪里？</strong></summary>
 
-**Q: 可以在 CI/CD 中使用吗？**
-A: 可以。示例：
+`~/.config/frc/config.json`
+</details>
+
+<details>
+<summary><strong>Q: 如何确定应该设置多少内存？</strong></summary>
+
+运行 `frc info node` 查看根据系统内存推荐的配置值。
+</details>
+
+<details>
+<summary><strong>Q: 会影响程序性能吗？</strong></summary>
+
+不会。FRC 仅在启动时设置环境变量，没有运行时开销。
+</details>
+
+<details>
+<summary><strong>Q: 可以在 CI/CD 中使用吗？</strong></summary>
+
+可以。示例：
 
 ```yaml
 # GitHub Actions
@@ -303,6 +326,7 @@ build:
   script:
     - frc -m 8192 npm run build
 ```
+</details>
 
 ## 开发
 
